@@ -9,13 +9,15 @@ const map = Leaflet.map("map").setView(NZ, 6);
 
 const markerIcon = Leaflet.icon({
   iconUrl: "https://unpkg.com/leaflet@1.9.4/dist/images/marker-icon.png",
-  iconAnchor: [10, 20],
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
 });
-Leaflet.marker(NZ, { icon: markerIcon }).addTo(map); // add a marker to the map at the WBS coordinates
 
 Leaflet.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
   maxZoom: 19,
-  attribution: '&copy; <a href="https://google.com" target="_blank">Google</a>',
+  attribution:
+    '&copy; <a href="https://www.openstreetmap.org/copyright" target="_blank">OpenStreetMap</a> contributors',
 }).addTo(map);
 
 const myLocations = [
@@ -77,4 +79,4 @@ myLocations.forEach((location) => {
 const bounds = Leaflet.latLngBounds(
   myLocations.map((location) => location.location),
 );
-map.fitBounds(bounds);
+map.fitBounds(bounds, { padding: [50, 50] });
